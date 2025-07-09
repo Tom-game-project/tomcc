@@ -9,12 +9,14 @@ enum e_operator
 	e_operator_mul,
 	e_operator_div,
 	e_operator_mod,
+
 	/// assignment
 	e_operator_assignment,
 	e_operator_add_assignment,
 	e_operator_sub_assignment,
 	e_operator_mul_assignment,
 	e_operator_div_assignment,
+	e_operator_mod_assignment,
 	e_operator_bitshift_right_assignment,
 	e_operator_bitshift_left_assignment,
 	e_operator_and_assignment,
@@ -24,10 +26,12 @@ enum e_operator
 	e_operator_decr,
 	e_operator_bitshift_right,
 	e_operator_bitshift_left,
+
 	/// addr pointer
 	e_operator_addr, // 最初はe_operator_logic_and として解釈される
 	e_operator_pointer, // 最初はe_operator_logic_and として解釈される
 	e_operator_arrow, // 最初はe_operator_logic_and として解釈される
+
 	/// logic
 	e_operator_logic_and,
 	e_operator_logic_or,

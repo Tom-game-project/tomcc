@@ -189,7 +189,7 @@
 
 <typedef_name> ::= <identifier>
 
-<declaration> ::= {<declaration_specifier>}+ {<init_declarator>}* ;
+<declaration> ::= {<declaration_specifier>}+ {<init_declarator>}* ; 
 
 <init_declarator> ::= <declarator>
                     | <declarator> = <initializer>

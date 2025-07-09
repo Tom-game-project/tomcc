@@ -52,6 +52,7 @@ static int infer_declaration_specifier_index(
 
 /// ```bnf
 /// <declaration> ::= {<declaration_specifier>}+ {<init_declarator>}* ;
+/// declaration最低でも一つのdeclaration_specifierを持つ
 /// ```
 /// 
 /// ```c
@@ -124,7 +125,9 @@ t_stmt_type judge_stmt(t_void_list *lst)
 	return -1; // ERR 
 }
 
-t_parse_err *parse_statement_compound(t_void_list **lst, t_stmt **stmt_ast)
+/// parse_compound_statement
+/// 
+t_parse_err *parse_compound_statement(t_void_list **lst, t_stmt **stmt_ast)
 {
 	t_void_list *token;
 
@@ -146,7 +149,7 @@ t_parse_err *parse_statement_compound(t_void_list **lst, t_stmt **stmt_ast)
 	}
 	return NULL;
 }
-
+/*
 t_parse_err *parse_statement_s(t_void_list **lst, t_stmt **stmt_ast) // TODO 名前考えろ
 {
 	switch (judge_stmt(*lst))
@@ -179,6 +182,6 @@ t_parse_err *parse_statement_s(t_void_list **lst, t_stmt **stmt_ast) // TODO 名
 t_stmt *parse_statement(t_void_list **lst)
 {
 	group_paren(lst, e_token_type_open_brace, e_token_type_close_brace, e_token_type_brace);
-	return ;
+	return NULL; // TODO
 }
-
+*/

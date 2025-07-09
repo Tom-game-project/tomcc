@@ -28,6 +28,8 @@ char *print_operator_as_string(t_operator operator)
 			return "*=";
 		case e_operator_div_assignment:
 			return "/=";
+		case e_operator_mod_assignment:
+			return "%=";
 		case e_operator_bitshift_right_assignment:
 			return ">>=";
 		case e_operator_bitshift_left_assignment:
@@ -186,6 +188,8 @@ char *get_operator_enum_as_string(t_operator operator)
 			return "e_operator_mul_assignment";
 		case e_operator_div_assignment:
 			return "e_operator_div_assignment";
+		case e_operator_mod_assignment:
+			return "e_operator_mod_assignment";
 		case e_operator_bitshift_right_assignment:
 			return "e_operator_bitshift_right_assignment";
 		case e_operator_bitshift_left_assignment:

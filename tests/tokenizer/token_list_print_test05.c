@@ -1,4 +1,3 @@
-
 #include "list.h"
 #include "test_tools.h"
 #include "tokenizer.h"
@@ -6,16 +5,16 @@
 #include "brackets.h"
 
 /// ```
-/// make vtest TEST_FILE=tests/tokenizer/token_list_print_test04.c
+/// make vtest TEST_FILE=tests/tokenizer/token_list_print_test05.c
 /// ```
 int main()
 {
 	char *str = \
-		"int main(int argc, char *argv[]){"
-		"if (1) {printf(\"hello world%d\", 1 + 1);printf(\"hello world%d\", 1 + 1);printf(\"hello world%d\", 1 + 1);}else\n"
-		"{printf(\"false\n\")}"
-		"return 0;"
-		"}"
+		"int a = 123;"
+		"if (a % 2 == 0)"
+		"{a = a + 456;}"
+		"else {a = 0;}"
+		"return a;"
 	;
 	t_token_list *tkn_lst;
 

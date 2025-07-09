@@ -28,7 +28,7 @@ MINESRC = \
 NAME = libft.a
 
 
-SOURCES = $(BSCSRC)
+SOURCES = $(BSCSRC) $(MINESRC)
 ifdef BONUS_FLAG
 	SOURCES += $(BNSSRC)
 endif

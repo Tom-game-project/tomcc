@@ -70,7 +70,7 @@ size_t match_operator_token(char *str, t_token_list **lst)
 		char buf[3];
 		size_t size;
 		t_operator operator;
-	} str_operator_conv_table[34] = {
+	} str_operator_conv_table[35] = {
 		{{'>', '>', '='},3, e_operator_bitshift_right_assignment},
 		{{'<', '<', '='},3, e_operator_bitshift_left_assignment},
 		{{'+', '+', '\0'},2, e_operator_incr},
@@ -79,6 +79,7 @@ size_t match_operator_token(char *str, t_token_list **lst)
 		{{'-', '=', '\0'},2, e_operator_sub_assignment},
 		{{'*', '=', '\0'},2, e_operator_mul_assignment},
 		{{'/', '=', '\0'},2, e_operator_div_assignment},
+		{{'%', '=', '\0'},2, e_operator_mod_assignment},
 		{{'<', '<', '\0'},2, e_operator_bitshift_left},
 		{{'<', '=', '\0'},2, e_operator_le},
 		{{'>', '>', '\0'},2, e_operator_bitshift_right},
@@ -104,9 +105,10 @@ size_t match_operator_token(char *str, t_token_list **lst)
 		{{'=', '\0', '\0'},1, e_operator_assignment},
 		{{',', '\0', '\0'},1, e_operator_comma},
 		{{'.', '\0', '\0'},1, e_operator_dot},
+		{{'%', '\0', '\0'},1, e_operator_mod},
 	};
 
-	for (int i = 0; i < 33; i++)
+	for (int i = 0; i < 35; i++)
 	{
 		if (
 			ft_strncmp(str, str_operator_conv_table[i].buf, str_operator_conv_table[i].size) == 0
@@ -128,6 +130,7 @@ size_t case_ptr_state_out(
        	t_token_list **lst
 )
 {
+	//debug_dprintf(STDERR_FILENO, "case_ptr_state_out:%s\n", str); 
 	if (*str == '"')
 	{
 		*ptr_state = e_ptr_state_in_double_quotation;
@@ -326,21 +329,27 @@ t_token_list *tokenizer(char *str)
 		switch (ptr_state)
 		{
 			case e_ptr_state_out:
+				//debug_dprintf(STDERR_FILENO, "e_ptr_state_out\n");
 				slide = case_ptr_state_out(str, &ptr_state, &lst);
 				break;
 			case e_ptr_state_in_word:
+				//debug_dprintf(STDERR_FILENO, "e_ptr_state_in_word\n");
 				slide = case_ptr_state_in_word(str, &ptr_state);
 				break;
 			case e_ptr_state_in_double_quotation:
+				//debug_dprintf(STDERR_FILENO, "e_ptr_state_in_double_quotation\n");
 				slide = case_ptr_state_in_double_quotation(str, &ptr_state, &lst);
 				break;
 			case e_ptr_state_in_single_quotation:
+				//debug_dprintf(STDERR_FILENO, "e_ptr_state_in_single_quotation\n");
 				slide = case_ptr_state_in_single_quotation(str, &ptr_state, &lst);
 				break;
 			case e_ptr_state_in_oneline_comment:
+				//debug_dprintf(STDERR_FILENO, "e_ptr_state_in_oneline_comment\n");
 				slide = case_ptr_state_in_oneline_comment(str, &ptr_state, &lst);
 				break;
 			case e_ptr_state_in_multiline_comment:
+				//debug_dprintf(STDERR_FILENO, "e_ptr_state_in_multiline_comment\n");
 				slide = case_ptr_state_in_multiline_comment(str, &ptr_state, &lst);
 				break;
 		}
